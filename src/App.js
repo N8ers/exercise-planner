@@ -5,8 +5,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newExercise: '',
-      exercises: ['pushup', 'situp', 'pullup']
+      newExercise: "",
+      exercises: ["pushup", "situp", "pullup"],
     };
   }
 
@@ -23,8 +23,14 @@ class App extends React.Component {
       exercises: [...this.state.exercises, this.state.newExercise],
     });
     this.setState({
-      newExercise: '',
+      newExercise: "",
     });
+  };
+
+  deleteExercise = (value) => {
+    this.setState({
+      exercises: this.state.exercises.filter(exercise => exercise !== value)
+    })
   };
 
   render() {
@@ -33,12 +39,19 @@ class App extends React.Component {
         <h1>Exercise:</h1>
         <ul>
           {this.state.exercises.map((exercise, index) => (
-            <li key={exercise + index}>{exercise}</li>
+            <li key={exercise + index}>
+              {/* why this anonimous function? because we want to pass an arg (exercise), but don't want to fire it */}
+              <button onClick={() => this.deleteExercise(exercise)}>X</button>
+              {exercise}
+            </li>
           ))}
         </ul>
 
         <form className="App" onSubmit={this.submitNewExercise}>
-          <input value={this.state.newExercise} onChange={this.updateNewExercise} />
+          <input
+            value={this.state.newExercise}
+            onChange={this.updateNewExercise}
+          />
           <button>Submit</button>
         </form>
       </div>
