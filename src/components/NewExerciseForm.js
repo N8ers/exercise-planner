@@ -1,6 +1,8 @@
 import { TextField, Button } from "@material-ui/core";
 import React from "react";
 
+import classes from "./NewExerciseForm.module.css";
+
 class NewExerciseForm extends React.Component {
   constructor(props) {
     super(props);
@@ -62,31 +64,34 @@ class NewExerciseForm extends React.Component {
         <TextField
           name="sets"
           label="sets"
-          min="0"
           type="number"
+          min="0"
+          className={classes.numberInput}
           onChange={this.handleUpdate}
         />
         <TextField
           name="reps"
           label="reps"
-          min="0"
           type="number"
+          min="0"
+          className={classes.numberInput}
           onChange={this.handleUpdate}
         />
 
         <TextField
-          label="weight"
           name="weight"
+          label="weight"
           type="number"
+          className={classes.numberInput}
           onChange={this.handleUpdate}
         />
 
         <TextField
           name="weightUnit"
-          onChange={this.handleUpdate}
           label="weight unit"
           select
           SelectProps={{ native: true }}
+          onChange={this.handleUpdate}
         >
           <option value={"lbs"}>lbs</option>
           <option value={"kg"}>kg</option>
@@ -99,6 +104,7 @@ class NewExerciseForm extends React.Component {
           label="rest time"
           type="number"
           min="0"
+          className={classes.numberInput}
           onChange={this.handleUpdate}
         />
         <TextField
@@ -113,10 +119,10 @@ class NewExerciseForm extends React.Component {
         </TextField>
 
         <TextField
-          label="notes"
           name="notes"
-          multiline
+          label="notes"
           type="text"
+          multiline
           onChange={this.handleUpdate}
         />
         <Button type="submit" variant="contained" color="primary">
