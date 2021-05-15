@@ -1,12 +1,12 @@
 import React from "react";
 
 import ExerciseCard from "../components/ExerciseCard";
+import NewExerciseForm from "../components/NewExerciseForm";
 
 class PlanBuilder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newExercise: "",
       exercises: [
         {
           id: 0,
@@ -39,27 +39,24 @@ class PlanBuilder extends React.Component {
     };
   }
 
-  updateNewExercise = (event) => {
-    event.preventDefault();
-    this.setState({
-      newExercise: event.target.value,
-    });
-  };
+  generateNewId = () => {
+    let existingIds = this.state.exercises.map((exercise) => exercise.id)
+    let newId = (Math.max(...existingIds) + 1)
+    return newId;
+  }
 
-  submitNewExercise = (event) => {
-    event.preventDefault();
+  submitNewExercise = (newExercise) => {
+    newExercise['id'] = this.generateNewId()
     this.setState({
-      exercises: [...this.state.exercises, this.state.newExercise],
-    });
-    this.setState({
-      newExercise: "",
+      exercises: [...this.state.exercises, newExercise],
     });
   };
 
   deleteExercise = (value) => {
-    console.log('value: ', value)
     this.setState({
-      exercises: this.state.exercises.filter((exercise) => exercise.id !== value.id),
+      exercises: this.state.exercises.filter(
+        (exercise) => exercise.id !== value.id
+      ),
     });
   };
 
@@ -77,13 +74,9 @@ class PlanBuilder extends React.Component {
           ))}
         </ul>
 
-        <form className="App" onSubmit={this.submitNewExercise}>
-          <input
-            value={this.state.newExercise}
-            onChange={this.updateNewExercise}
-          />
-          <button>Submit</button>
-        </form>
+        <div>
+          <NewExerciseForm addExercise={this.submitNewExercise} />
+        </div>
       </div>
     );
   }
