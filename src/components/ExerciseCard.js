@@ -1,6 +1,9 @@
 function ExerciseCard(props) {
-  function doSomething() {
-    alert("something changed");
+  function doSomething(event) {
+    let id = props.exercise.id;
+    let fieldToUpdate = event.target.name;
+    let newValue = event.target.value;
+    props.updateExercise(id, fieldToUpdate, newValue);
   }
 
   return (
@@ -11,11 +14,17 @@ function ExerciseCard(props) {
         <label>id: {props.exercise.id} </label>
 
         <label>name: </label>
-        <input type="text" value={props.exercise.name} onChange={doSomething} />
+        <input
+          type="text"
+          name="name"
+          value={props.exercise.name}
+          onChange={doSomething}
+        />
 
         <label>sets: </label>
         <input
           type="number"
+          name="sets"
           value={props.exercise.sets}
           onChange={doSomething}
         />
@@ -23,6 +32,7 @@ function ExerciseCard(props) {
         <label>reps: </label>
         <input
           type="number"
+          name="reps"
           value={props.exercise.reps}
           onChange={doSomething}
         />
@@ -30,11 +40,16 @@ function ExerciseCard(props) {
         <label>rest between sets: </label>
         <input
           type="number"
+          name="rest"
           value={props.exercise.rest}
           onChange={doSomething}
         />
 
-        <select value={props.exercise.restUnit} onChange={doSomething}>
+        <select
+          value={props.exercise.restUnit}
+          name="restUnit"
+          onChange={doSomething}
+        >
           <option value={"seconds"}>seconds</option>
           <option value={"minutes"}>minutes</option>
         </select>
@@ -42,6 +57,7 @@ function ExerciseCard(props) {
         <label>notes: </label>
         <textarea
           type="text"
+          name="notes"
           value={props.exercise.notes}
           onChange={doSomething}
         ></textarea>

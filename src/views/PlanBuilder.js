@@ -40,15 +40,26 @@ class PlanBuilder extends React.Component {
   }
 
   generateNewId = () => {
-    let existingIds = this.state.exercises.map((exercise) => exercise.id)
-    let newId = (Math.max(...existingIds) + 1)
+    let existingIds = this.state.exercises.map((exercise) => exercise.id);
+    let newId = Math.max(...existingIds) + 1;
     return newId;
-  }
+  };
 
   submitNewExercise = (newExercise) => {
-    newExercise['id'] = this.generateNewId()
+    newExercise["id"] = this.generateNewId();
     this.setState({
       exercises: [...this.state.exercises, newExercise],
+    });
+  };
+
+  updateExercise = (id, fieldToUpdate, newValue) => {
+    this.setState({
+      exercises: this.state.exercises.map((exercise) => {
+        if (exercise.id === id) {
+          exercise[fieldToUpdate] = newValue;
+        }
+        return exercise;
+      }),
     });
   };
 
@@ -70,6 +81,7 @@ class PlanBuilder extends React.Component {
               key={exercise.id}
               exercise={exercise}
               deleteExercise={this.deleteExercise}
+              updateExercise={this.updateExercise}
             />
           ))}
         </ul>
