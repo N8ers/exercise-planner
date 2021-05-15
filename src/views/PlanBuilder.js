@@ -14,10 +14,10 @@ class PlanBuilder extends React.Component {
           sets: 0,
           reps: 0,
           weight: 0,
-          weightUnit: 'lbs',
+          weightUnit: "lbs",
           rest: 0,
           restUnit: "seconds",
-          notes: ""
+          notes: "",
         },
         {
           id: 2,
@@ -25,10 +25,10 @@ class PlanBuilder extends React.Component {
           sets: 0,
           reps: 0,
           weight: 0,
-          weightUnit: 'lbs',
+          weightUnit: "lbs",
           rest: 0,
           restUnit: "seconds",
-          notes: ""
+          notes: "",
         },
         {
           id: 3,
@@ -36,10 +36,10 @@ class PlanBuilder extends React.Component {
           sets: 0,
           reps: 0,
           weight: 0,
-          weightUnit: 'lbs',
+          weightUnit: "lbs",
           rest: 0,
           restUnit: "seconds",
-          notes: ""
+          notes: "",
         },
       ],
     };
@@ -47,6 +47,9 @@ class PlanBuilder extends React.Component {
 
   generateNewId = () => {
     let existingIds = this.state.exercises.map((exercise) => exercise.id);
+    if (!existingIds.length) {
+      return 1;
+    }
     let newId = Math.max(...existingIds) + 1;
     return newId;
   };

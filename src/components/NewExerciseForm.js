@@ -20,14 +20,16 @@ class NewExerciseForm extends React.Component {
 
   resetForm = () => {
     this.setState({
-      name: "",
-      sets: 0,
-      reps: 0,
-      weight: 0,
-      weightUnit: "lbs",
-      rest: 0,
-      restUnit: "seconds",
-      notes: "",
+      newExercise: {
+        name: "",
+        sets: 0,
+        reps: 0,
+        weight: 0,
+        weightUnit: "lbs",
+        rest: 0,
+        restUnit: "seconds",
+        notes: "",
+      },
     });
   };
 
