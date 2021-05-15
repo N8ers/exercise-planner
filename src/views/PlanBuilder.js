@@ -7,7 +7,35 @@ class PlanBuilder extends React.Component {
     super(props);
     this.state = {
       newExercise: "",
-      exercises: ["pushup", "situp", "pullup"],
+      exercises: [
+        {
+          id: 0,
+          name: "pushup",
+          sets: 0,
+          reps: 0,
+          rest: 0,
+          restUnit: "seconds",
+          notes: "",
+        },
+        {
+          id: 1,
+          name: "situp",
+          sets: 0,
+          reps: 0,
+          rest: 0,
+          restUnit: "seconds",
+          notes: "",
+        },
+        {
+          id: 2,
+          name: "pullup",
+          sets: 0,
+          reps: 0,
+          rest: 0,
+          restUnit: "seconds",
+          notes: "",
+        },
+      ],
     };
   }
 
@@ -29,8 +57,9 @@ class PlanBuilder extends React.Component {
   };
 
   deleteExercise = (value) => {
+    console.log('value: ', value)
     this.setState({
-      exercises: this.state.exercises.filter((exercise) => exercise !== value),
+      exercises: this.state.exercises.filter((exercise) => exercise.id !== value.id),
     });
   };
 
@@ -41,6 +70,7 @@ class PlanBuilder extends React.Component {
         <ul>
           {this.state.exercises.map((exercise) => (
             <ExerciseCard
+              key={exercise.id}
               exercise={exercise}
               deleteExercise={this.deleteExercise}
             />

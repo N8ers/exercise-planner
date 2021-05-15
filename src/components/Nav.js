@@ -4,14 +4,9 @@ function Nav() {
   return (
     <header>
       <nav>
-        <ul>
-          <li>
-            <Link to="/">HOME</Link>
-          </li>
-          <li>
-            <Link to="/new">Build</Link>
-          </li>
-        </ul>
+        <Link to="/">Home</Link>
+        <span> | </span>
+        <Link to="/new">New Exercise Plan</Link>
       </nav>
     </header>
   );
