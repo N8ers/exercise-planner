@@ -84,7 +84,7 @@ class PlanBuilder extends React.Component {
     return (
       <div>
         <h1>Exercise:</h1>
-        <ul>
+        <div>
           {this.state.exercises.map((exercise) => (
             <ExerciseCard
               key={exercise.id}
@@ -93,7 +93,7 @@ class PlanBuilder extends React.Component {
               updateExercise={this.updateExercise}
             />
           ))}
-        </ul>
+        </div>
 
         <div>
           <NewExerciseForm addExercise={this.submitNewExercise} />

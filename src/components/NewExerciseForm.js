@@ -1,5 +1,5 @@
-import { TextField, Button } from "@material-ui/core";
 import React from "react";
+import { TextField, Button } from "@material-ui/core";
 
 import classes from "./NewExerciseForm.module.css";
 
@@ -107,6 +107,7 @@ class NewExerciseForm extends React.Component {
           className={classes.numberInput}
           onChange={this.handleUpdate}
         />
+        
         <TextField
           name="restUnit"
           label="rest unit"
