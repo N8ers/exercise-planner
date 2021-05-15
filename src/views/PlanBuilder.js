@@ -9,31 +9,37 @@ class PlanBuilder extends React.Component {
     this.state = {
       exercises: [
         {
-          id: 0,
+          id: 1,
           name: "pushup",
           sets: 0,
           reps: 0,
+          weight: 0,
+          weightUnit: 'lbs',
           rest: 0,
           restUnit: "seconds",
-          notes: "",
-        },
-        {
-          id: 1,
-          name: "situp",
-          sets: 0,
-          reps: 0,
-          rest: 0,
-          restUnit: "seconds",
-          notes: "",
+          notes: ""
         },
         {
           id: 2,
+          name: "situp",
+          sets: 0,
+          reps: 0,
+          weight: 0,
+          weightUnit: 'lbs',
+          rest: 0,
+          restUnit: "seconds",
+          notes: ""
+        },
+        {
+          id: 3,
           name: "pullup",
           sets: 0,
           reps: 0,
+          weight: 0,
+          weightUnit: 'lbs',
           rest: 0,
           restUnit: "seconds",
-          notes: "",
+          notes: ""
         },
       ],
     };

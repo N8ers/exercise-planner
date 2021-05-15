@@ -4,17 +4,21 @@ function NewExerciseForm(props) {
   const nameRef = useRef();
   const setsRef = useRef();
   const repsRef = useRef();
+  const weightRef = useRef();
+  const weightUnitRef = useRef();
   const restRef = useRef();
   const restUnitRef = useRef();
   const notesRef = useRef();
 
-  function resetForm () {
-    nameRef.current.value = ''
-    setsRef.current.value = 0
-    repsRef.current.value = 0
-    restRef.current.value = 0
-    restUnitRef.current.value = 'seconds'
-    notesRef.current.value = ''
+  function resetForm() {
+    nameRef.current.value = "";
+    setsRef.current.value = 0;
+    repsRef.current.value = 0;
+    weightRef.current.value = 0;
+    weightUnitRef.current.value = "lbs";
+    restRef.current.value = 0;
+    restUnitRef.current.value = "seconds";
+    notesRef.current.value = "";
   }
 
   function submitNewExercise(event) {
@@ -24,13 +28,15 @@ function NewExerciseForm(props) {
       name: nameRef.current.value,
       sets: setsRef.current.value,
       reps: repsRef.current.value,
+      weight: weightRef.current.value,
+      weightUnit: weightUnitRef.current.value,
       rest: restRef.current.value,
       restUnit: restUnitRef.current.value,
       notes: notesRef.current.value,
     };
-    
-    props.addExercise(newExercise)
-    resetForm()
+
+    props.addExercise(newExercise);
+    resetForm();
   }
 
   return (
@@ -43,6 +49,16 @@ function NewExerciseForm(props) {
 
       <label>reps: </label>
       <input type="number" ref={repsRef} />
+
+      <label>weight: </label>
+      <input type="number" ref={weightRef} />
+
+      <select ref={weightUnitRef}>
+        <option value={"lbs"}>lbs</option>
+        <option value={"kg"}>kg</option>
+        <option value={"body weight"}>body weight</option>
+        <option value={"N/A"}>N/A</option>
+      </select>
 
       <label>rest between sets: </label>
       <input type="number" ref={restRef} />

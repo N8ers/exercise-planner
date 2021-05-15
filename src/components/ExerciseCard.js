@@ -25,6 +25,7 @@ function ExerciseCard(props) {
         <input
           type="number"
           name="sets"
+          min="0"
           value={props.exercise.sets}
           onChange={doSomething}
         />
@@ -33,14 +34,37 @@ function ExerciseCard(props) {
         <input
           type="number"
           name="reps"
+          min="0"
           value={props.exercise.reps}
           onChange={doSomething}
         />
+
+        <label>weight: </label>
+        <input
+          type="number"
+          name="weight"
+          min="0"
+          value={props.exercise.weight}
+          onChange={doSomething}
+        />
+
+        <label>weight unit: </label>
+        <select
+          value={props.exercise.weightUnit}
+          name="weightUnit"
+          onChange={doSomething}
+        >
+          <option value={'lbs'}>lbs</option>
+          <option value={'kg'}>kg</option>
+          <option value={'body weight'}>body weight</option>
+          <option value={'N/A'}>N/A</option>
+        </select>
 
         <label>rest between sets: </label>
         <input
           type="number"
           name="rest"
+          min="0"
           value={props.exercise.rest}
           onChange={doSomething}
         />
