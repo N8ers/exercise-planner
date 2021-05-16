@@ -6,7 +6,7 @@ import classes from "./ExerciseCard.module.css";
 function ExerciseCard(props) {
 
   function updateExercise(event) {
-    let id = this.props.exercise.id;
+    let id = props.exercise.id;
     let fieldToUpdate = event.target.name;
     let newValue = event.target.value;
     props.updateExercise(id, fieldToUpdate, newValue);
@@ -56,7 +56,6 @@ function ExerciseCard(props) {
         label="weight"
         type="number"
         min="0"
-        s
         className={classes.numberInput}
         value={props.exercise.weight}
         onChange={updateExercise}
