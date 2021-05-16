@@ -7,32 +7,20 @@ class NewExerciseForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newExercise: {
-        name: "",
-        sets: 0,
-        reps: 0,
-        weight: 0,
-        weightUnit: "lbs",
-        rest: 0,
-        restUnit: "seconds",
-        notes: "",
-      },
+      name: "",
+      sets: "",
+      reps: "",
+      weight: "",
+      weightUnit: "lbs",
+      rest: "",
+      restUnit: "seconds",
+      notes: "",
     };
   }
 
   resetForm = () => {
-    this.setState({
-      newExercise: {
-        name: "",
-        sets: 0,
-        reps: 0,
-        weight: 0,
-        weightUnit: "lbs",
-        rest: 0,
-        restUnit: "seconds",
-        notes: "",
-      },
-    });
+    this.setState({ name: "" });
+    console.log("form Reset: ", this.state);
   };
 
   handleUpdate = (event) => {
@@ -40,15 +28,14 @@ class NewExerciseForm extends React.Component {
     const name = event.target.name;
 
     this.setState({
-      newExercise: {
-        [name]: value,
-      },
+      ...this.state,
+      [name]: value,
     });
   };
 
   submitNewExercise = (event) => {
     event.preventDefault();
-    this.props.addExercise(this.state.newExercise);
+    this.props.addExercise(this.state);
     this.resetForm();
   };
 
@@ -59,6 +46,7 @@ class NewExerciseForm extends React.Component {
           name="name"
           label="name"
           type="text"
+          defaultValue={this.state.name}
           onChange={this.handleUpdate}
         />
         <TextField
@@ -66,6 +54,7 @@ class NewExerciseForm extends React.Component {
           label="sets"
           type="number"
           min="0"
+          defaultValue={this.state.sets}
           className={classes.numberInput}
           onChange={this.handleUpdate}
         />
@@ -74,6 +63,7 @@ class NewExerciseForm extends React.Component {
           label="reps"
           type="number"
           min="0"
+          defaultValue={this.state.reps}
           className={classes.numberInput}
           onChange={this.handleUpdate}
         />
@@ -82,6 +72,7 @@ class NewExerciseForm extends React.Component {
           name="weight"
           label="weight"
           type="number"
+          defaultValue={this.state.weight}
           className={classes.numberInput}
           onChange={this.handleUpdate}
         />
@@ -91,6 +82,7 @@ class NewExerciseForm extends React.Component {
           label="weight unit"
           select
           SelectProps={{ native: true }}
+          defaultValue={this.state.weightUnit}
           onChange={this.handleUpdate}
         >
           <option value={"lbs"}>lbs</option>
@@ -104,16 +96,18 @@ class NewExerciseForm extends React.Component {
           label="rest time"
           type="number"
           min="0"
+          defaultValue={this.state.rest}
           className={classes.numberInput}
           onChange={this.handleUpdate}
         />
-        
+
         <TextField
           name="restUnit"
           label="rest unit"
           onChange={this.handleUpdate}
           select
           SelectProps={{ native: true }}
+          defaultValue={this.state.restUnit}
         >
           <option value={"seconds"}>seconds</option>
           <option value={"minutes"}>minutes</option>
@@ -124,6 +118,7 @@ class NewExerciseForm extends React.Component {
           label="notes"
           type="text"
           multiline
+          defaultValue={this.state.notes}
           onChange={this.handleUpdate}
         />
         <Button type="submit" variant="contained" color="primary">

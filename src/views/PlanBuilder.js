@@ -2,7 +2,6 @@ import React from "react";
 
 import ExerciseCard from "../components/ExerciseCard";
 import NewExerciseForm from "../components/NewExerciseForm";
-// import Dummy from "../components/dummy";
 
 class PlanBuilder extends React.Component {
   constructor(props) {
@@ -26,7 +25,7 @@ class PlanBuilder extends React.Component {
           sets: 1,
           reps: 1,
           weight: 0,
-          weightUnit: "body weight",
+          weightUnit: "N/A",
           rest: 20,
           restUnit: "minutes",
           notes: "bend down, hurl",
@@ -37,7 +36,7 @@ class PlanBuilder extends React.Component {
           sets: 5,
           reps: 15,
           weight: 30,
-          weightUnit: "lbs",
+          weightUnit: "kg",
           rest: 30,
           restUnit: "seconds",
           notes: "arms side, then go up",
@@ -112,12 +111,6 @@ class PlanBuilder extends React.Component {
         <div>
           <NewExerciseForm addExercise={this.submitNewExercise} />
         </div>
-
-        <hr />
-
-        {/* <div>
-          <Dummy value={this.state.exercises[1].restUnit} />
-        </div> */}
       </div>
     );
   }
