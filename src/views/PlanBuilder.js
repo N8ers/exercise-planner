@@ -11,35 +11,46 @@ class PlanBuilder extends React.Component {
         {
           id: 1,
           name: "pushup",
-          sets: 0,
-          reps: 0,
+          sets: 10,
+          reps: 10,
           weight: 0,
-          weightUnit: 'lbs',
-          rest: 0,
+          weightUnit: "body weight",
+          rest: 20,
           restUnit: "seconds",
-          notes: ""
+          notes: "go down then up",
+        },
+        {
+          id: 4,
+          name: "throw up",
+          sets: 1,
+          reps: 1,
+          weight: 0,
+          weightUnit: "N/A",
+          rest: 20,
+          restUnit: "minutes",
+          notes: "bend down, hurl",
         },
         {
           id: 2,
-          name: "situp",
-          sets: 0,
-          reps: 0,
-          weight: 0,
-          weightUnit: 'lbs',
-          rest: 0,
+          name: "flys",
+          sets: 5,
+          reps: 15,
+          weight: 30,
+          weightUnit: "kg",
+          rest: 30,
           restUnit: "seconds",
-          notes: ""
+          notes: "arms side, then go up",
         },
         {
           id: 3,
           name: "pullup",
-          sets: 0,
-          reps: 0,
+          sets: 5,
+          reps: 1,
           weight: 0,
-          weightUnit: 'lbs',
-          rest: 0,
-          restUnit: "seconds",
-          notes: ""
+          weightUnit: "bodyweight",
+          rest: 1,
+          restUnit: "minutes",
+          notes: "hang down, go up",
         },
       ],
     };
@@ -47,6 +58,9 @@ class PlanBuilder extends React.Component {
 
   generateNewId = () => {
     let existingIds = this.state.exercises.map((exercise) => exercise.id);
+    if (!existingIds.length) {
+      return 1;
+    }
     let newId = Math.max(...existingIds) + 1;
     return newId;
   };
@@ -81,7 +95,7 @@ class PlanBuilder extends React.Component {
     return (
       <div>
         <h1>Exercise:</h1>
-        <ul>
+        <div>
           {this.state.exercises.map((exercise) => (
             <ExerciseCard
               key={exercise.id}
@@ -90,7 +104,9 @@ class PlanBuilder extends React.Component {
               updateExercise={this.updateExercise}
             />
           ))}
-        </ul>
+        </div>
+
+        <hr />
 
         <div>
           <NewExerciseForm addExercise={this.submitNewExercise} />

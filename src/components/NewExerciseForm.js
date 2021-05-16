@@ -1,78 +1,137 @@
-import { useRef } from "react";
+import React from "react";
+import { TextField, Button } from "@material-ui/core";
 
-function NewExerciseForm(props) {
-  const nameRef = useRef();
-  const setsRef = useRef();
-  const repsRef = useRef();
-  const weightRef = useRef();
-  const weightUnitRef = useRef();
-  const restRef = useRef();
-  const restUnitRef = useRef();
-  const notesRef = useRef();
+import classes from "./NewExerciseForm.module.css";
 
-  function resetForm() {
-    nameRef.current.value = "";
-    setsRef.current.value = 0;
-    repsRef.current.value = 0;
-    weightRef.current.value = 0;
-    weightUnitRef.current.value = "lbs";
-    restRef.current.value = 0;
-    restUnitRef.current.value = "seconds";
-    notesRef.current.value = "";
-  }
+const initialState = {
+  name: "",
+  sets: "",
+  reps: "",
+  weight: "",
+  weightUnit: "lbs",
+  rest: "",
+  restUnit: "seconds",
+  notes: "",
+}
 
-  function submitNewExercise(event) {
-    event.preventDefault();
-
-    const newExercise = {
-      name: nameRef.current.value,
-      sets: setsRef.current.value,
-      reps: repsRef.current.value,
-      weight: weightRef.current.value,
-      weightUnit: weightUnitRef.current.value,
-      rest: restRef.current.value,
-      restUnit: restUnitRef.current.value,
-      notes: notesRef.current.value,
+class NewExerciseForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...initialState
     };
-
-    props.addExercise(newExercise);
-    resetForm();
   }
 
-  return (
-    <form onSubmit={submitNewExercise}>
-      <label>name: </label>
-      <input type="text" ref={nameRef} />
+  resetForm = () => {
+    this.setState({
+      ...initialState
+    });
+  };
 
-      <label>sets: </label>
-      <input type="number" ref={setsRef} />
+  handleUpdate = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
 
-      <label>reps: </label>
-      <input type="number" ref={repsRef} />
+    this.setState({
+      ...this.state,
+      [name]: value,
+    });
+  };
 
-      <label>weight: </label>
-      <input type="number" ref={weightRef} />
+  submitNewExercise = (event) => {
+    event.preventDefault();
+    this.props.addExercise(this.state);
+    this.resetForm();
+  };
 
-      <select ref={weightUnitRef}>
-        <option value={"lbs"}>lbs</option>
-        <option value={"kg"}>kg</option>
-        <option value={"body weight"}>body weight</option>
-        <option value={"N/A"}>N/A</option>
-      </select>
+  render() {
+    return (
+      <form onSubmit={this.submitNewExercise}>
+        <TextField
+          name="name"
+          label="name"
+          type="text"
+          value={this.state.name}
+          onChange={this.handleUpdate}
+        />
+        <TextField
+          name="sets"
+          label="sets"
+          type="number"
+          min="0"
+          value={this.state.sets}
+          className={classes.numberInput}
+          onChange={this.handleUpdate}
+        />
+        <TextField
+          name="reps"
+          label="reps"
+          type="number"
+          min="0"
+          value={this.state.reps}
+          className={classes.numberInput}
+          onChange={this.handleUpdate}
+        />
 
-      <label>rest between sets: </label>
-      <input type="number" ref={restRef} />
+        <TextField
+          name="weight"
+          label="weight"
+          type="number"
+          value={this.state.weight}
+          className={classes.numberInput}
+          onChange={this.handleUpdate}
+        />
 
-      <select ref={restUnitRef}>
-        <option value={"seconds"}>seconds</option>
-        <option value={"minutes"}>minutes</option>
-      </select>
+        <TextField
+          name="weightUnit"
+          label="weight unit"
+          select
+          SelectProps={{ native: true }}
+          value={this.state.weightUnit}
+          onChange={this.handleUpdate}
+        >
+          <option value={"lbs"}>lbs</option>
+          <option value={"kg"}>kg</option>
+          <option value={"body weight"}>body weight</option>
+          <option value={"N/A"}>N/A</option>
+        </TextField>
 
-      <label>notes: </label>
-      <textarea type="text" ref={notesRef}></textarea>
-      <button>Add</button>
-    </form>
-  );
+        <TextField
+          name="rest"
+          label="rest time"
+          type="number"
+          min="0"
+          value={this.state.rest}
+          className={classes.numberInput}
+          onChange={this.handleUpdate}
+        />
+
+        <TextField
+          name="restUnit"
+          label="rest unit"
+          onChange={this.handleUpdate}
+          select
+          SelectProps={{ native: true }}
+          value={this.state.restUnit}
+        >
+          <option value={"seconds"}>seconds</option>
+          <option value={"minutes"}>minutes</option>
+        </TextField>
+
+        <TextField
+          name="notes"
+          label="notes"
+          type="text"
+          multiline
+          value={this.state.notes}
+          onChange={this.handleUpdate}
+        />
+        <Button type="submit" variant="contained" color="primary">
+          Add
+        </Button>
+      </form>
+    );
+  }
 }
 
 export default NewExerciseForm;

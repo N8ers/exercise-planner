@@ -1,92 +1,111 @@
+import React from "react";
+import { TextField, Button } from "@material-ui/core";
+
+import classes from "./ExerciseCard.module.css";
+
 function ExerciseCard(props) {
-  function doSomething(event) {
+
+  function updateExercise(event) {
     let id = props.exercise.id;
     let fieldToUpdate = event.target.name;
     let newValue = event.target.value;
     props.updateExercise(id, fieldToUpdate, newValue);
-  }
+  };
 
   return (
-    <li>
-      {/* why this anonimous function? because we want to pass an arg (exercise), but don't want to fire it */}
-      <form>
-        <button onClick={() => props.deleteExercise(props.exercise)}>X</button>
-        <label>id: {props.exercise.id} </label>
+    <form>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={() => props.deleteExercise(props.exercise)}
+      >
+        X
+      </Button>
+      <label>id: {props.exercise.id} </label>
 
-        <label>name: </label>
-        <input
-          type="text"
-          name="name"
-          value={props.exercise.name}
-          onChange={doSomething}
-        />
+      <TextField
+        name="name"
+        label="name"
+        type="text"
+        value={props.exercise.name}
+        onChange={updateExercise}
+      />
 
-        <label>sets: </label>
-        <input
-          type="number"
-          name="sets"
-          min="0"
-          value={props.exercise.sets}
-          onChange={doSomething}
-        />
+      <TextField
+        name="sets"
+        label="sets"
+        type="number"
+        min="0"
+        className={classes.numberInput}
+        value={props.exercise.sets}
+        onChange={updateExercise}
+      />
 
-        <label>reps: </label>
-        <input
-          type="number"
-          name="reps"
-          min="0"
-          value={props.exercise.reps}
-          onChange={doSomething}
-        />
+      <TextField
+        name="reps"
+        label="reps"
+        type="number"
+        min="0"
+        className={classes.numberInput}
+        value={props.exercise.reps}
+        onChange={updateExercise}
+      />
 
-        <label>weight: </label>
-        <input
-          type="number"
-          name="weight"
-          min="0"
-          value={props.exercise.weight}
-          onChange={doSomething}
-        />
+      <TextField
+        name="weight"
+        label="weight"
+        type="number"
+        min="0"
+        className={classes.numberInput}
+        value={props.exercise.weight}
+        onChange={updateExercise}
+      />
 
-        <label>weight unit: </label>
-        <select
-          value={props.exercise.weightUnit}
-          name="weightUnit"
-          onChange={doSomething}
-        >
-          <option value={'lbs'}>lbs</option>
-          <option value={'kg'}>kg</option>
-          <option value={'body weight'}>body weight</option>
-          <option value={'N/A'}>N/A</option>
-        </select>
+      <TextField
+        name="weightUnit"
+        label="weight unit"
+        select
+        SelectProps={{ native: true }}
+        value={props.exercise.weightUnit}
+        onChange={updateExercise}
+      >
+        <option value={"lbs"}>lbs</option>
+        <option value={"kg"}>kg</option>
+        <option value={"body weight"}>body weight</option>
+        <option value={"N/A"}>N/A</option>
+      </TextField>
 
-        <label>rest between sets: </label>
-        <input
-          type="number"
-          name="rest"
-          min="0"
-          value={props.exercise.rest}
-          onChange={doSomething}
-        />
+      <TextField
+        name="rest"
+        label="rest"
+        type="number"
+        min="0"
+        className={classes.numberInput}
+        value={props.exercise.rest}
+        onChange={updateExercise}
+      />
 
-        <select
-          value={props.exercise.restUnit}
-          name="restUnit"
-          onChange={doSomething}
-        >
-          <option value={"seconds"}>seconds</option>
-          <option value={"minutes"}>minutes</option>
-        </select>
+      <TextField
+        name="restUnit"
+        label="rest unit"
+        select
+        SelectProps={{ native: true }}
+        value={props.exercise.restUnit}
+        onChange={updateExercise}
+      >
+        <option value="seconds">seconds</option>
+        <option value="minutes">minutes</option>
+      </TextField>
 
-        <label>notes: </label>
-        <textarea
-          type="text"
-          name="notes"
-          value={props.exercise.notes}
-          onChange={doSomething}
-        ></textarea>
-      </form>
-    </li>
+      <TextField
+        name="notes"
+        label="notes"
+        type="text"
+        multiline
+        value={props.exercise.notes}
+        onChange={updateExercise}
+      />
+    </form>
   );
 }
 
