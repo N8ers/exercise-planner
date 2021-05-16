@@ -6,18 +6,18 @@ import classes from "./ExerciseCard.module.css";
 class ExerciseCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      exercise: {
-        name: "",
-        sets: 0,
-        reps: 0,
-        weight: 0,
-        weightUnit: "lbs",
-        rest: 0,
-        restUnit: "seconds",
-        notes: "",
-      },
-    };
+    // this.state = {
+    //   exercise: {
+    //     name: "",
+    //     sets: 0,
+    //     reps: 0,
+    //     weight: 0,
+    //     weightUnit: "lbs",
+    //     rest: 0,
+    //     restUnit: "seconds",
+    //     notes: "",
+    //   },
+    // };
   }
 
   updateExercise = (event) => {
@@ -82,6 +82,7 @@ class ExerciseCard extends React.Component {
           label="weight unit"
           select
           SelectProps={{ native: true }}
+          value={this.props.exercise.weightUnit}
           onChange={this.updateExercise}
         >
           <option value={"lbs"}>lbs</option>
@@ -103,19 +104,28 @@ class ExerciseCard extends React.Component {
         <TextField
           name="restUnit"
           label="rest unit"
-          onChange={this.updateExercise}
           select
           SelectProps={{ native: true }}
+          value={this.props.exercise.restUnit}
+          onChange={this.updateExercise}
         >
-          <option value={"seconds"}>seconds</option>
-          <option value={"minutes"}>minutes</option>
+          {/* <option>{this.props.exercise.restUnit}</option> */}
+          <option value="seconds">seconds</option>
+          <option value="minutes">minutes</option>
         </TextField>
+
+        {/* <span>{this.props.exercise.restUnit}</span>
+        <select value={this.props.exercise.restUnit}>
+          <option value="seconds">seconds</option>
+          <option value="minutes">minutes</option>
+        </select> */}
 
         <TextField
           name="notes"
           label="notes"
           type="text"
           multiline
+          value={this.props.exercise.notes}
           onChange={this.updateExercise}
         />
 
