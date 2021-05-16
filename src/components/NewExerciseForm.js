@@ -3,31 +3,28 @@ import { TextField, Button } from "@material-ui/core";
 
 import classes from "./NewExerciseForm.module.css";
 
+const initialState = {
+  name: "",
+  sets: "",
+  reps: "",
+  weight: "",
+  weightUnit: "lbs",
+  rest: "",
+  restUnit: "seconds",
+  notes: "",
+}
+
 class NewExerciseForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      sets: "",
-      reps: "",
-      weight: "",
-      weightUnit: "lbs",
-      rest: "",
-      restUnit: "seconds",
-      notes: "",
+      ...initialState
     };
   }
 
   resetForm = () => {
     this.setState({
-      name: "",
-      sets: "",
-      reps: "",
-      weight: "",
-      weightUnit: "lbs",
-      rest: "",
-      restUnit: "seconds",
-      notes: "",
+      ...initialState
     });
   };
 
