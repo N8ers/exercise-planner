@@ -2,6 +2,7 @@ import React from "react";
 
 import ExerciseCard from "../components/ExerciseCard";
 import NewExerciseForm from "../components/NewExerciseForm";
+// import Dummy from "../components/dummy";
 
 class PlanBuilder extends React.Component {
   constructor(props) {
@@ -11,35 +12,46 @@ class PlanBuilder extends React.Component {
         {
           id: 1,
           name: "pushup",
-          sets: 0,
-          reps: 0,
+          sets: 10,
+          reps: 10,
           weight: 0,
-          weightUnit: "lbs",
-          rest: 0,
+          weightUnit: "body weight",
+          rest: 20,
           restUnit: "seconds",
-          notes: "",
+          notes: "go down then up",
+        },
+        {
+          id: 4,
+          name: "throw up",
+          sets: 1,
+          reps: 1,
+          weight: 0,
+          weightUnit: "body weight",
+          rest: 20,
+          restUnit: "minutes",
+          notes: "bend down, hurl",
         },
         {
           id: 2,
-          name: "situp",
-          sets: 0,
-          reps: 0,
-          weight: 0,
+          name: "flys",
+          sets: 5,
+          reps: 15,
+          weight: 30,
           weightUnit: "lbs",
-          rest: 0,
+          rest: 30,
           restUnit: "seconds",
-          notes: "",
+          notes: "arms side, then go up",
         },
         {
           id: 3,
           name: "pullup",
-          sets: 0,
-          reps: 0,
+          sets: 5,
+          reps: 1,
           weight: 0,
-          weightUnit: "lbs",
-          rest: 0,
-          restUnit: "seconds",
-          notes: "",
+          weightUnit: "bodyweight",
+          rest: 1,
+          restUnit: "minutes",
+          notes: "hang down, go up",
         },
       ],
     };
@@ -95,9 +107,17 @@ class PlanBuilder extends React.Component {
           ))}
         </div>
 
+        <hr />
+
         <div>
           <NewExerciseForm addExercise={this.submitNewExercise} />
         </div>
+
+        <hr />
+
+        {/* <div>
+          <Dummy value={this.state.exercises[1].restUnit} />
+        </div> */}
       </div>
     );
   }
