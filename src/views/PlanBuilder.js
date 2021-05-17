@@ -18,6 +18,7 @@ class PlanBuilder extends React.Component {
           rest: 20,
           restUnit: "seconds",
           notes: "go down then up",
+          sortOrder: 2,
         },
         {
           id: 4,
@@ -29,6 +30,7 @@ class PlanBuilder extends React.Component {
           rest: 20,
           restUnit: "minutes",
           notes: "bend down, hurl",
+          sortOrder: 4,
         },
         {
           id: 2,
@@ -40,6 +42,7 @@ class PlanBuilder extends React.Component {
           rest: 30,
           restUnit: "seconds",
           notes: "arms side, then go up",
+          sortOrder: 3,
         },
         {
           id: 3,
@@ -51,6 +54,7 @@ class PlanBuilder extends React.Component {
           rest: 1,
           restUnit: "minutes",
           notes: "hang down, go up",
+          sortOrder: 1,
         },
       ],
     };
@@ -95,21 +99,26 @@ class PlanBuilder extends React.Component {
     return (
       <div>
         <h1>Exercise:</h1>
-        <div>
-          {this.state.exercises.map((exercise) => (
-            <ExerciseCard
-              key={exercise.id}
-              exercise={exercise}
-              deleteExercise={this.deleteExercise}
-              updateExercise={this.updateExercise}
-            />
-          ))}
-        </div>
-
-        <hr />
 
         <div>
           <NewExerciseForm addExercise={this.submitNewExercise} />
+        </div>
+
+        <br></br>
+        <div>sorted: {this.sortOrder}</div>
+        <br></br>
+
+        <div>
+          {this.state.exercises
+            .sort((a, b) => a.sortOrder - b.sortOrder)
+            .map((exercise) => (
+              <ExerciseCard
+                key={exercise.id}
+                exercise={exercise}
+                deleteExercise={this.deleteExercise}
+                updateExercise={this.updateExercise}
+              />
+            ))}
         </div>
       </div>
     );
