@@ -1,4 +1,5 @@
 import React from "react";
+import Box from "@material-ui/core/Box";
 
 import ExerciseCard from "../components/ExerciseCard";
 import NewExerciseForm from "../components/NewExerciseForm";
@@ -100,26 +101,24 @@ class PlanBuilder extends React.Component {
       <div>
         <h1>Exercise:</h1>
 
-        <div>
+        <Box m={3}>
           <NewExerciseForm addExercise={this.submitNewExercise} />
-        </div>
+        </Box>
 
-        <br></br>
-        <div>sorted: {this.sortOrder}</div>
-        <br></br>
-
-        <div>
+        <Box m={3}>
           {this.state.exercises
             .sort((a, b) => a.sortOrder - b.sortOrder)
             .map((exercise) => (
-              <ExerciseCard
-                key={exercise.id}
-                exercise={exercise}
-                deleteExercise={this.deleteExercise}
-                updateExercise={this.updateExercise}
-              />
+              <Box mt={3}>
+                <ExerciseCard
+                  key={exercise.id}
+                  exercise={exercise}
+                  deleteExercise={this.deleteExercise}
+                  updateExercise={this.updateExercise}
+                />
+              </Box>
             ))}
-        </div>
+        </Box>
       </div>
     );
   }
