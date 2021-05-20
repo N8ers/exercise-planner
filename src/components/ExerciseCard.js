@@ -4,13 +4,12 @@ import { TextField, Button } from "@material-ui/core";
 import classes from "./ExerciseCard.module.css";
 
 function ExerciseCard(props) {
-
   function updateExercise(event) {
     let id = props.exercise.id;
     let fieldToUpdate = event.target.name;
     let newValue = event.target.value;
     props.updateExercise(id, fieldToUpdate, newValue);
-  };
+  }
 
   return (
     <form>
@@ -21,6 +20,15 @@ function ExerciseCard(props) {
       >
         X
       </Button>
+
+      <Button variant="contained" onClick={() => alert("add dropset")}>
+        add dropset
+      </Button>
+
+      <Button variant="contained" onClick={() => alert("add superset")}>
+        add superset
+      </Button>
+
       <label>id: {props.exercise.id} </label>
 
       <TextField
@@ -105,6 +113,12 @@ function ExerciseCard(props) {
         value={props.exercise.notes}
         onChange={updateExercise}
       />
+
+      <div>
+        DROPSET: {props.exercise.dropSet.map((set, index) => {
+          <div key="set.set + index">set: {set.set} {set.weight} {set.weightUnit}</div>
+        })}
+      </div>
     </form>
   );
 }
