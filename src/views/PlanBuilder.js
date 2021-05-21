@@ -115,10 +115,9 @@ class PlanBuilder extends React.Component {
         <Box m={3}>
           {this.state.exercises
             .sort((a, b) => a.sortOrder - b.sortOrder)
-            .map((exercise) => (
-              <Box mt={3}>
+            .map((exercise, index) => (
+              <Box mt={3} key={exercise.id}>
                 <ExerciseCard
-                  key={exercise.id}
                   exercise={exercise}
                   deleteExercise={this.deleteExercise}
                   updateExercise={this.updateExercise}

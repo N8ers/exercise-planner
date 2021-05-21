@@ -115,9 +115,14 @@ function ExerciseCard(props) {
       />
 
       <div>
-        DROPSET: {props.exercise.dropSet.map((set, index) => {
-          <div key="set.set + index">set: {set.set} {set.weight} {set.weightUnit}</div>
-        })}
+        <div>DROPSET:</div>
+        <div>
+          {props.exercise.dropSet.map((set, index) => (
+            <div key={index + set.weightUnit}>
+              set: {set.set} {set.weight} {set.weightUnit} {index}
+            </div>
+          ))}
+        </div>
       </div>
     </form>
   );
