@@ -103,6 +103,10 @@ class PlanBuilder extends React.Component {
     });
   };
 
+  addDropSet = (value) => {
+    alert('add dropset in parent ', value)
+  }
+
   render() {
     return (
       <div>
@@ -121,6 +125,7 @@ class PlanBuilder extends React.Component {
                   exercise={exercise}
                   deleteExercise={this.deleteExercise}
                   updateExercise={this.updateExercise}
+                  addDropSet={this.addDropSet}
                 />
               </Box>
             ))}

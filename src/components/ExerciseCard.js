@@ -11,6 +11,16 @@ function ExerciseCard(props) {
     props.updateExercise(id, fieldToUpdate, newValue);
   }
 
+  function addDropSet() {
+    let id = props.exercise.id
+    let dropset = {
+      weigth: 0,
+      weightUnit: 'lbs',
+      reps: 0
+    }
+    props.addDropSet(id, dropset)
+  }
+
   return (
     <form>
       <Button
@@ -21,7 +31,7 @@ function ExerciseCard(props) {
         X
       </Button>
 
-      <Button variant="contained" onClick={() => alert("add dropset")}>
+      <Button variant="contained" onClick={() => addDropSet()}>
         add dropset
       </Button>
 
