@@ -12,13 +12,13 @@ function ExerciseCard(props) {
   }
 
   function addDropSet() {
-    let id = props.exercise.id
+    let id = props.exercise.id;
     let dropset = {
       weigth: 0,
-      weightUnit: 'lbs',
-      reps: 0
-    }
-    props.addDropSet(id, dropset)
+      weightUnit: "lbs",
+      reps: 0,
+    };
+    props.addDropSet(id, dropset);
   }
 
   return (
@@ -31,7 +31,7 @@ function ExerciseCard(props) {
         X
       </Button>
 
-      <Button variant="contained" onClick={() => addDropSet()}>
+      <Button variant="contained" onClick={addDropSet}>
         add dropset
       </Button>
 

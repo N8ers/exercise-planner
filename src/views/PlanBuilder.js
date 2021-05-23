@@ -21,9 +21,9 @@ class PlanBuilder extends React.Component {
           notes: "go down then up",
           sortOrder: 2,
           dropSet: [
-            { sets: 8, weight: 0, weightUnit: "body weight"},
-            { sets: 6, weight: 0, weightUnit: "body weight"},
-          ]
+            { sets: 8, weight: 0, weightUnit: "body weight" },
+            { sets: 6, weight: 0, weightUnit: "body weight" },
+          ],
         },
         {
           id: 4,
@@ -36,7 +36,7 @@ class PlanBuilder extends React.Component {
           restUnit: "minutes",
           notes: "bend down, hurl",
           sortOrder: 4,
-          dropSet: []
+          dropSet: [],
         },
         {
           id: 2,
@@ -49,7 +49,7 @@ class PlanBuilder extends React.Component {
           restUnit: "seconds",
           notes: "arms side, then go up",
           sortOrder: 3,
-          dropSet: []
+          dropSet: [],
         },
         {
           id: 3,
@@ -62,7 +62,7 @@ class PlanBuilder extends React.Component {
           restUnit: "minutes",
           notes: "hang down, go up",
           sortOrder: 1,
-          dropSet: []
+          dropSet: [],
         },
       ],
     };
@@ -103,9 +103,21 @@ class PlanBuilder extends React.Component {
     });
   };
 
-  addDropSet = (value) => {
-    alert('add dropset in parent ', value)
-  }
+  addDropSet = (id, dropset) => {
+    // const joined = this.state.myArray.concat('new value');
+    // this.setState({ myArray: joined })
+
+    const exerciseToModify = this.state.exercises.find(
+      (exercise) => (exercise.id = id)
+    );
+    const indexOfExercise = this.state.exercises.indexOf(exerciseToModify);
+
+    console.log("data ", exerciseToModify, indexOfExercise);
+
+    // this.setState({
+    //   exercises[exerciseToModify]: 'hi guys'
+    // })
+  };
 
   render() {
     return (
