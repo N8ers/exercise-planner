@@ -104,19 +104,18 @@ class PlanBuilder extends React.Component {
   };
 
   addDropSet = (id, dropset) => {
-    // const joined = this.state.myArray.concat('new value');
-    // this.setState({ myArray: joined })
+    const copyState = this.state.exercises;
 
-    const exerciseToModify = this.state.exercises.find(
-      (exercise) => (exercise.id = id)
-    );
-    const indexOfExercise = this.state.exercises.indexOf(exerciseToModify);
+    copyState.forEach((exercise) => {
+      if (exercise.id === id) {
+        console.log("exercise: ", exercise);
+        exercise.dropSet.push(dropset);
+      }
+    });
 
-    console.log("data ", exerciseToModify, indexOfExercise);
-
-    // this.setState({
-    //   exercises[exerciseToModify]: 'hi guys'
-    // })
+    this.setState({
+      exercises: copyState
+    })
   };
 
   render() {
