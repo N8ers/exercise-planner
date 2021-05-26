@@ -21,6 +21,10 @@ function ExerciseCard(props) {
     props.addDropSet(id, dropset);
   }
 
+  function updateDropset() {
+    alert('modfiy dropset')
+  }
+
   return (
     <form>
       <Button
@@ -129,7 +133,33 @@ function ExerciseCard(props) {
         <div>
           {props.exercise.dropSet.map((set, index) => (
             <div key={index + set.weightUnit}>
-              set: {set.set} {set.weight} {set.weightUnit} {index}
+              <TextField
+                name="dropset-set"
+                label="sets"
+                type="number"
+                min="0"
+                className={classes.numberInput}
+                value={0}
+                onChange={updateDropset}
+              />
+              <TextField
+                name="dropset-rep"
+                label="reps"
+                type="number"
+                min="0"
+                className={classes.numberInput}
+                value={0}
+                onChange={updateDropset}
+              />
+              <TextField
+                name="dropset-weight"
+                label="weight"
+                type="number"
+                min="0"
+                className={classes.numberInput}
+                value={0}
+                onChange={updateDropset}
+              />
             </div>
           ))}
         </div>
