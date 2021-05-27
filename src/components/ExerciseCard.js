@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Box } from "@material-ui/core";
 
 import classes from "./ExerciseCard.module.css";
 
@@ -22,29 +22,11 @@ function ExerciseCard(props) {
   }
 
   function updateDropset() {
-    alert('modfiy dropset')
+    alert("modfiy dropset");
   }
 
   return (
     <form>
-      <Button
-        variant="contained"
-        color="secondary"
-        onClick={() => props.deleteExercise(props.exercise)}
-      >
-        X
-      </Button>
-
-      <Button variant="contained" onClick={addDropSet}>
-        add dropset
-      </Button>
-
-      <Button variant="contained" onClick={() => alert("add superset")}>
-        add superset
-      </Button>
-
-      <label>id: {props.exercise.id} </label>
-
       <TextField
         name="name"
         label="name"
@@ -128,11 +110,19 @@ function ExerciseCard(props) {
         onChange={updateExercise}
       />
 
-      <div>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={() => props.deleteExercise(props.exercise)}
+      >
+        X
+      </Button>
+
+      <Box ml={25}>
         <div>DROPSET:</div>
         <div>
           {props.exercise.dropSet.map((set, index) => (
-            <div key={index + set.weightUnit}>
+            <div key={'dropset-' + props.exercise.id + '-' + index}>
               <TextField
                 name="dropset-set"
                 label="sets"
@@ -163,7 +153,17 @@ function ExerciseCard(props) {
             </div>
           ))}
         </div>
-      </div>
+      </Box>
+
+      <Box ml={25}>
+        <Button variant="contained" onClick={addDropSet}>
+          add dropset
+        </Button>
+
+        <Button variant="contained" onClick={() => alert("add superset")}>
+          add superset
+        </Button>
+      </Box>
     </form>
   );
 }
